@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+int x[100],n,k;
+string b[100];
+string a="";
+vector<string> d;
+void result() {
+	string b="";
+	for(int i=1; i<=n; i++) {
+		if(x[i]==1)b+='B';
+		else b+='A';
+	}
+	string c=a;
+	c+='A';
+	if(b.find(a)!= string::npos && b.find(c)==string::npos) {
+		d.push_back(b);
+	}
+}
+
+void Try(int i) {
+	for(int j=0; j<=1; j++) {
+		x[i]=j;
+		if(i==n)result();
+		else Try(i+1);
+	}
+}
+
+int main() {
+	cin>>n>>k;
+	for(int i=1; i<=k; i++) {
+		a.push_back('A');
+	}
+	Try(1);
+	cout<<d.size()<<endl;
+	for(int i=0; i<d.size(); i++){
+		cout<<d[i]<<endl;
+	}
+}
