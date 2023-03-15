@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		int n,m,k;
+		cin>>n>>k;
+		int a[n];
+		int dem=0,vt;
+		for(int i=0; i<n; i++) {
+			cin>>a[i];
+		    if(a[i]==k){
+			 vt=i+1;
+			 dem=1;
+			}
+		}
+		if(dem==1)cout<<vt;
+		else cout<<"NO";
+		cout<<endl;
+	}
+}
