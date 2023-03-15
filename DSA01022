@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int x[101], n, used[101],a[101],dem=1;
+
+bool check(){
+	int dem=0;
+	for(int i=1;i<=n; i++){
+		if(a[i]==x[i])dem++;
+	}
+	if(dem==n){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+void ktao(){
+	for(int i=1; i<=100; i++){
+		used[i]=0;
+	}
+}
+void Try(int i){
+	for(int j=1; j<=n; j++){
+		if(used[j]==0){
+			x[i]=j;
+			used[j]=1;
+			
+			if(i==n){
+				if(!check()){
+					dem++;
+				}else{
+					break;
+				}
+			}
+			else Try(i+1);
+			
+			used[j]=0;
+		}
+	}
+}
+
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+	cin>>n;
+	for(int i=1; i<=n; i++){
+		cin>>a[i];
+	}	
+	ktao();
+	Try(1);
+	cout<<dem<<endl;
+	dem=1;
+}
+}
