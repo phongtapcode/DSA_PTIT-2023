@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+void selection_sortt(int a[], int n) {
+	string b[1000];
+	int dem=0;
+	for(int i = 0; i < n - 1; i++) {
+		int minEl = i;
+		for(int j = i + 1; j < n; j++) {
+			if(a[minEl] > a[j]) {
+				minEl=j;
+			}
+		}
+		swap(a[i], a[minEl]);
+		b[dem]+="Buoc ";
+		b[dem]+=to_string(i+1);
+		b[dem]+=": ";
+		for(int u = 0; u < n; u++) b[dem]+=to_string(a[u])+' ';
+		dem++;
+	}
+	for(int i=dem-1; i>=0; i--) {
+		cout<<b[i]<<endl;
+	}
+}
+
+int main() {
+	/* Enter your code here. Read input from STDIN. Print output to STDOUT */
+
+	int n;
+	cin >> n;
+	int a[n];
+	for(int &x : a) cin >> x;
+	selection_sortt(a, n);
+
+	return 0;
+}
