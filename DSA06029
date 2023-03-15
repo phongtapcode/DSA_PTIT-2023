@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+void insertion_sortt(int a[], int n){
+	string b[1000];
+	int dem=0;
+	int ok=a[0];
+	int key, j, i;
+	for(i = 1; i < n; i++){
+		key = a[i];
+		j = i - 1;
+		while(j >= 0 && a[j] > key){
+			a[j + 1] = a[j];
+			j--;
+		}
+		a[j + 1] = key;
+		b[dem]+="Buoc ";
+		b[dem]+=to_string(i);
+		b[dem]+=": ";
+		for(int u = 0; u <= i; u++) b[dem]+=to_string(a[u])+' ';
+		dem++;
+	}
+	for(int i=dem-1; i>=0; i--){
+		cout<<b[i]<<endl;
+	}
+	cout << "Buoc 0: " << ok << endl;
+}
+
+int main() {
+		int n; cin >> n;
+		int a[n];
+		for(int &x : a) cin >> x;
+		insertion_sortt(a, n);
+    return 0;
+}
