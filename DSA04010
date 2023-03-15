@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		int n;
+		cin>>n;
+		int a[n];
+		for(int i=0; i<n; i++){
+			cin>>a[i];
+		}
+		long long tong=0,tong1=-1e18;
+		for(int i=0; i<n; i++){
+			tong+=a[i];
+			tong1=max(tong1,tong);
+			if(tong<0)tong=0;
+		}
+		cout<<tong1<<endl;
+	}	
+}
