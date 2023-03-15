@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int n;
+	cin>>n;
+	int a[n+1][n+1];
+	string b;
+	cin.ignore();
+	for(int i=1; i<=n; i++){
+		for(int j=1; j<=n; j++){
+			a[i][j]=0;
+		}
+	}
+	for(int i=1; i<=n; i++) {
+		getline(cin,b);
+		stringstream ss(b);
+		string token;
+		while(ss>>token) {
+			int x=stoi(token);
+			a[i][x]=a[x][i]=1;
+		}
+	}
+	for(int i=1; i<=n; i++) {
+		for(int j=1; j<=n; j++) {
+			cout<<a[i][j]<<' ';
+		}
+		cout<<endl;
+	}
+}
