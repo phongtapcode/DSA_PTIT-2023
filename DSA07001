@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int main() {
+	string s;
+	int n;
+	stack<int> a;
+	while(cin>>s) {
+		if(s=="push") {
+			cin>>n;
+			a.push(n);
+		} else if(s=="pop") {
+			a.pop();
+		} else {
+			if(a.empty()) {
+				cout<<"empty"<<endl;
+			} else {
+				vector<int> b;
+				while(!a.empty()) {
+					b.push_back(a.top());
+					a.pop();
+				}
+				for(int i=b.size()-1; i>=0; i--) {
+					a.push(b[i]);
+					cout<<b[i]<<' ';
+				}				
+				cout<<endl;
+			}
+		}
+	}
+}
