@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	cin.ignore();
+	while(t--) {
+		stack<long long> b;
+		string a;
+		getline(cin,a);
+		for(int i=a.length()-1; i>=0; i--) {
+			if(a[i]>='0' && a[i]<='9') {
+                 b.push(a[i]-'0');
+			}else{
+				long long top1=b.top();
+				b.pop();
+				long long top2=b.top();
+				b.pop();
+				if(a[i]=='+'){
+					b.push(top1+top2);
+				}else if(a[i]=='-'){
+					b.push(top1-top2);
+				}else if(a[i]=='*'){
+					b.push(top2*top1);
+				}else if(a[i]=='/'){
+					b.push(top1/top2);
+				}
+			}
+		}
+		cout<<b.top()<<endl;
+	}
+}
