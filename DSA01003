@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	int n;
+	while(t--) {
+		cin>>n;
+		int x[n+1];
+		for(int j=1; j<=n; j++) {
+			cin>>x[j];
+		}
+		int i=n-1;
+		while(x[i]>x[i+1])i--;
+		if(i<1) {
+			for(int j=1; j<=n; j++) {
+				cout<<j<<' ';
+			}
+			cout<<endl;
+		} else {
+			for(int j=n; j>=0; j--){
+				if(x[j]>x[i]){
+					swap(x[i],x[j]);
+					break;
+				}
+			}
+			int l=i+1,r=n;
+			while(l<=r){
+				swap(x[l],x[r]);
+				l++;
+				r--;
+			}
+			for(int i=1; i<=n; i++) {
+				cout<<x[i]<<' ';
+			}
+			cout<<endl;
+		}
+	}
+}
+
