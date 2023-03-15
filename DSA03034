@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		int m,n,k;
+		cin>>n>>m>>k;
+		int a[n],b[m],c[k];
+		for(int i=0; i<n; i++) {
+			cin>>a[i];
+		}
+		for(int i=0; i<m; i++) {
+			cin>>b[i];
+		}
+		for(int i=0; i<k; i++) {
+			cin>>c[i];
+		}
+		vector<int> d;
+		for(int i=0; i<m; i++) {
+			for(int j=0; j<n; j++) {
+				if(b[i]==a[j]) {
+					d.push_back(b[i]);
+					a[j]=-100;
+					break;
+				}
+			}
+		}
+		if(d.size()==0) {
+			cout<<"NO"<<endl;
+		} else {
+			int ok=0;
+			for(int i=0; i<k; i++) {
+				for(int j=0; j<d.size(); j++) {
+					if(c[i]==d[j]) {
+						cout<<c[i]<<' ';
+						d[j]=-100;
+						ok=1;
+						break;
+					}
+				}
+			}
+			if(ok==0)cout<<"NO"<<endl;
+			cout<<endl;
+		}
+	}
+}
