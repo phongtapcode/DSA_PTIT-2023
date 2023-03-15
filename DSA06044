@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+	int n;
+	cin>>n;
+	long long a[100000];
+	vector<long long> chan;
+	vector<long long> le;
+	for(int i=1; i<=n; i++){
+		cin>>a[i];
+		if(i%2==0){
+			chan.push_back(a[i]);
+		}else{
+			le.push_back(a[i]);
+		}
+	}
+	sort(chan.begin(),chan.end());
+	sort(le.begin(),le.end());
+	int chan1=chan.size()-1;
+	int le1=0;
+	for(int i=1; i<=n; i++){
+		if(i%2==0){
+			cout<<chan[chan1]<<' ';
+			chan1--;
+		}else{
+			cout<<le[le1]<<' ';
+			le1++;
+		}
+	}
+}
