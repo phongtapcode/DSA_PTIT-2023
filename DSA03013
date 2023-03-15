@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+long long mod=1e9+7;
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		int k;
+		cin>>k;
+		string a;
+		cin>>a;
+		map<char, int> b;
+		int d=0;
+		for(int i=0; i<a.length(); i++){
+			b[a[i]]++;
+			d=max(b[a[i]],d);
+		}
+		if(a.size()>=d*k-(k-1))cout<<1<<endl;
+		else cout<<-1<<endl;
+	}
+}
+//2
+//2
+//ABB
+//2
+//AAA
