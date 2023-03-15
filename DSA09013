@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+int dinh,canh,dbd,dinhx,dinhy,ok=0;
+vector<int> adj[1000];
+bool visited[1000];
+vector<pair<int,int>> a;
+void ip() {
+	for(int i=0; i<canh; i++) {
+		int x,y;
+		cin>>x>>y;
+		a.push_back({x,y});
+		adj[x].push_back(y);
+		adj[y].push_back(x);
+	}
+	memset(visited, false, sizeof(visited));
+}
+void dfs(int u) {
+	visited[u]=true;
+	for(auto x: adj[u]) {
+		if(!visited[x]) {
+			dfs(x);
+		}
+	}
+}
+void dem() {
+	for(int i=0; i<a.size(); i++) {
+		for(int j=0; j<adj[a[i].first].size(); j++) {
+			if(adj[a[i].first][j]==a[i].second) {
+				adj[a[i].first][j]=0;
+				break;
+			}
+		}
+		for(int j=0; j<adj[a[i].second].size(); j++) {
+			if(adj[a[i].second][j]==a[i].first) {
+				adj[a[i].second][j]=0;
+				break;
+			}
+		}
+		dfs(a[i].first);
+		if(!visited[a[i].second]) {
+			cout<<a[i].first<<' '<<a[i].second<<' ';
+		}
+		for(int j=0; j<adj[a[i].first].size(); j++) {
+			if(adj[a[i].first][j]==0) {
+				adj[a[i].first][j]=a[i].second;
+				break;
+			}
+		}
+		for(int j=0; j<adj[a[i].second].size(); j++) {
+			if(adj[a[i].second][j]==0) {
+				adj[a[i].second][j]=a[i].first;
+				break;
+			}
+		}
+		memset(visited,false, sizeof(visited));
+	}
+}
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		cin>>dinh>>canh;
+		ip();
+        dem();
+		a.clear();
+		for(int i=1; i<=dinh; i++) {
+			adj[i].clear();
+		}
+		cout<<endl;
+	}
+	return 0;
+}
