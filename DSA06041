@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		int n;
+		cin>>n;
+		int a[n];
+		map<int,int> b;
+		for(int i=0; i<n; i++) {
+			cin>>a[i];
+			b[a[i]]++;
+		}
+		int dem=0;
+		int kq;
+        for(auto x: b){
+        	if(x.second>dem){
+        		dem=x.second;
+        		kq=x.first;
+			}
+		}
+		if(dem>n/2){
+			cout<<kq;
+		}else{
+			cout<<"NO";
+		}
+		cout<<endl;
+	}
+}
