@@ -1,0 +1,43 @@
+//Phong Bá
+#include<bits/stdc++.h>
+using namespace std;
+int x[100],n,dem=0,a[100],k;
+
+void result(){
+	for(int i=1; i<=n; i++){
+		if(x[i]==1)cout<<a[i]<<' ';
+	}
+	cout<<endl;
+}
+
+void tong(){
+	long long tong1=0;
+	for(int i=1; i<=n; i++){
+		if(x[i]==1){
+			tong1+=a[i];
+		}
+	}
+	if(tong1==k){
+		result();
+		dem++;
+	}
+}
+void Try(int i){
+	for(int j=0; j<=1; j++){
+		x[i]=j;
+		if(i==n){
+			tong();
+		}
+		else Try(i+1);
+	}
+}
+
+int main() {
+	cin>>n>>k;
+	for(int i=1; i<=n; i++){
+		cin>>a[i];
+	}
+	Try(1);
+	cout<<dem;
+}
+
