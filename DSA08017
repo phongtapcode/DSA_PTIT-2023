@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int x[100],n;
+
+void result() {
+	for(int i=1; i<=n; i++) {
+		if(x[i]==0)cout<<8;
+		else cout<<6;
+	}
+	cout<<' ';
+}
+
+void Try(int i) {
+	for(int j=0; j<=1; j++) {
+		x[i]=j;
+		if(i==n) {
+			result();
+		} else Try(i+1);
+	}
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		cin>>n;
+		for(int i=n; i>=2; i--) {
+			n=i;
+			Try(1);
+		}
+		cout<<"8 6"<<endl;
+	}
+	return 0;
+}
