@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int x[100], n,k,a[1001],c[1001];
+
+void result() {
+	for(int i=1; i<=k; i++) {
+		cout<<c[x[i]]<<' ';
+	}
+	cout<<endl;
+}
+
+void Try(int i) {
+	for(int j=x[i-1]+1; j<=n-k+i ; j++) {
+		x[i]=j;
+		if(i==k)result();
+		else Try(i+1);
+	}
+}
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		cin>>n>>k;
+		set<int> b;
+		int d=1;
+		for(int i=1; i<=n; i++) {
+			cin>>a[i];
+			b.insert(a[i]);
+		}
+		for(auto x: b) {
+			c[d]=x;
+			d++;
+		}
+		n=d-1;
+		Try(1);
+	}
+}
