@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+int x[100], n,k,a[100],cnt=0,s;
+
+void result() {
+	int tong=0;
+	for(int i=1; i<=k; i++) {
+		tong+=x[i];
+	}
+	if(tong==s)cnt++;
+}
+
+void Try(int i) {
+	for(int j=x[i-1]+1; j<=n-k+i ; j++) {
+		x[i]=j;
+		if(i==k)result();
+		else Try(i+1);
+	}
+}
+
+int main() {
+	while(cin>>n){
+		cin>>k>>s;
+		if(n==0 && k==0 && s==0)break;
+		Try(1);
+		cout<<cnt<<endl;
+		cnt=0;
+	}
+}
