@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		int dinh,canh;
+		cin>>dinh>>canh;
+		vector<int> a(dinh+1);
+		for(int i=1; i<=canh; i++) {
+			int x,y;
+			cin>>x>>y;
+			a[x]++;
+			a[y]++;
+		}
+		int bacle=0;
+		int bacchan=0;
+		for(int i=1; i<a.size(); i++) {
+			if(a[i]%2==0) {
+				bacchan++;
+			} else {
+				bacle++;
+			}
+		}
+		if(bacchan==dinh) {
+			cout<<2;
+		} else if(bacle==2) {
+			cout<<1;
+		} else cout<<0;
+		cout<<endl;
+	}
+}
