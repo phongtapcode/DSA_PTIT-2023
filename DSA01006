@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		int n;
+		cin>>n;
+		int a[n];
+		int dem=0;
+		for(int i=n; i>=1; i--) {
+			a[dem]=i;
+			dem++;
+		}
+		do {
+			for(int i=0; i<n; i++) {
+				cout<<a[i];
+			}
+			cout<<' ';
+		} while(prev_permutation(a,a+n));
+		cout<<endl;
+	}
+}
