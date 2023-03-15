@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int main() {
+	int t;
+	cin>>t;
+	string s;
+	int n;
+	queue<int> a;
+	while(t--) {
+		cin>>s;
+		if(s=="PUSH") {
+			cin>>n;
+			a.push(n);
+		} else if(s=="POP") {
+			if(!a.empty())a.pop();
+		} else {
+			if(a.empty()) {
+				cout<<"NONE"<<endl;
+			} else {
+				cout<<a.front()<<endl;
+			}
+		}
+	}
+}
