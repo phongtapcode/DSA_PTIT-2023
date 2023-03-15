@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+//sinh to hop bang quay lui
+
+int x[101], n, used[101];
+
+void result() {
+	for(int i=1; i<=n; i++) {
+		cout<<x[i];
+	}
+	cout<<' ';
+}
+void ktao() {
+	for(int i=1; i<=100; i++) {
+		used[i]=0;
+	}
+}
+void Try(int i) {
+	for(int j=1; j<=n; j++) {
+		if(used[j]==0) {
+			x[i]=j;
+			used[j]=1;
+
+			if(i==n)result();
+			else Try(i+1);
+
+			used[j]=0;
+		}
+	}
+}
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		cin>>n;
+		ktao();
+		Try(1);
+		cout<<endl;
+	}
+}
+
