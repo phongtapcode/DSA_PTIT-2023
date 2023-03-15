@@ -1,0 +1,64 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int x[101], n, used[101];
+
+void result() {
+	char a;
+	for(int i=1; i<=n; i++) {
+		a=x[i]+64;
+		cout<<a;
+	}
+	cout<<endl;
+}
+bool check() {
+	for(int i=2; i<n; i++) {
+		if(x[i]==1) {
+			if((x[i+1]==5 && x[i-1]!=5 ) || (x[i+1]!=5 && x[i-1]==5)){
+				return true;
+			}
+		}
+		if(x[i]==5) {
+			if((x[i+1]==1 && x[i-1]!=1 ) || (x[i+1]!=1 && x[i-1]==1)){
+				return true;
+			}
+		}
+	}
+	if((x[1]==1 && x[n]==5) || (x[1]==5 && x[n]==1)  ){
+		return true;
+	}
+	return false;
+}
+void ktao() {
+	for(int i=1; i<=100; i++) {
+		used[i]=0;
+	}
+}
+void Try(int i) {
+	for(int j=1; j<=n; j++) {
+		if(used[j]==0) {
+			x[i]=j;
+			used[j]=1;
+
+			if(i==n) {
+				if(check()) {
+					result();
+				}
+			} else Try(i+1);
+
+			used[j]=0;
+		}
+	}
+}
+
+int main() {
+	char a;
+	cin>>a;
+	n=a-64;
+	if(n==4){
+		cout<<"ABCD\nABDC\nACBD\nACDB\nADBC\nADCB\nBCDA\nBDCA\nCBDA\nCDBA\nDBCA\nDCBA";
+	}else{
+	ktao();
+	Try(1);
+}
+}
