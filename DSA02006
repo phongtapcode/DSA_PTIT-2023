@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+using namespace std;
+int x[100],n,a[100],k,dem1=0;
+void result() {
+	int b[n];
+	int cnt=0;
+	for(int i=1; i<=n; i++) {
+		if(x[i]==0) {
+             b[cnt]=a[i];
+             cnt++;
+		}
+	}
+	int dem=0;
+	cout<<'[';
+	for(int i=0; i<cnt; i++){
+		if(dem<cnt-1)cout<<b[i]<<' ';
+		else cout<<b[i];
+		dem++;
+	}
+	cout<<"] ";
+	dem1++;
+}
+
+void tong() {
+	long long tong1=0;
+	for(int i=1; i<=n; i++) {
+		if(x[i]==0) {
+			tong1+=a[i];
+		}
+	}
+	if(tong1==k) {
+		result();
+	}
+}
+void Try(int i) {
+	for(int j=0; j<=1; j++) {
+		x[i]=j;
+		if(i==n) {
+			tong();
+		} else Try(i+1);
+	}
+}
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		cin>>n>>k;
+		for(int i=1; i<=n; i++) {
+			cin>>a[i];
+		}
+		sort(a,a+n+1);
+		Try(1);
+		cout<<endl;
+		if(dem1==0)cout<<"-1"<<endl;
+		dem1=0;
+	}
+}
