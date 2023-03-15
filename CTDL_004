@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+int x[100], n,k,a[100],cnt=0;
+
+void result() {
+	int ok=0;
+	for(int i=2; i<=k; i++) {
+		if(a[x[i]]<a[x[i-1]]) {
+			ok=1;
+			break;
+		}
+	}
+	if(ok==0)cnt++;
+}
+
+void Try(int i) {
+	for(int j=x[i-1]+1; j<=n-k+i ; j++) {
+		x[i]=j;
+		if(i==k)result();
+		else Try(i+1);
+	}
+}
+
+int main() {
+	cin>>n>>k;
+	for(int i=1; i<=n; i++) {
+		cin>>a[i];
+	}
+	Try(1);
+cout<<cnt;
+}
