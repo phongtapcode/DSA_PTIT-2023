@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+int uutien(char c) {
+	if(c=='^') {
+		return 5;
+	} else if(c=='*' || c=='/') {
+		return 4;
+	} else if(c=='+' || c=='-') {
+		return 3;
+	} else if(c=='(') {
+		return 2;
+	}
+}
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		string s;
+		cin>>s;
+		stack<char> a;
+		string b="";
+		for(int i=0; i<=s.length()-1; i++) {
+			if(isalpha(s[i])) {
+				b+=s[i];
+			} else if(s[i]=='(') {
+				a.push(s[i]);
+			} else if(s[i]==')') {
+				while(!a.empty() && a.top()!='(') {
+					b+=a.top();
+					a.pop();
+				}
+				a.pop();
+			} else {
+				while(!a.empty() && uutien(s[i]) <= uutien(a.top())) {
+					b+=a.top();
+					a.pop();
+				}
+				a.push(s[i]);
+			}
+		}
+		while(!a.empty()) {
+			b+=a.top();
+			a.pop();
+		}
+		cout<<b<<endl;
+	}
+}
+//2
+//(A+(B+C))
+//((A*B)+C)
