@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int x[100],n;
+vector<string> a;
+
+void result() {
+	string temp="";
+	for(int i=1; i<=n; i++) {
+		if(x[i]==0)temp+='8';
+		else temp+='6';
+	}
+   a.push_back(temp);
+}
+
+void Try(int i) {
+	for(int j=0; j<=1; j++) {
+		x[i]=j;
+		if(i==n) {
+			result();
+		} else Try(i+1);
+	}
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		cin>>n;
+		for(int i=n; i>=2; i--) {
+			n=i;
+			Try(1);
+		}
+		cout<<a.size()+2<<endl;
+		cout<<"6 8 ";
+		for(int i=a.size()-1; i>=0; i--){
+			cout<<a[i]<<' ';
+		}
+		cout<<endl;
+		a.clear();
+	}
+	return 0;
+}
