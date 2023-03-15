@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		int n;
+		cin>>n;
+		int a[n];
+		for(int i=0; i<n; i++) {
+			cin>>a[i];
+		}
+        sort(a,a+n);
+        string c="";
+        string b="";
+        for(int i=0; i<n; i++){
+             if(i%2)c+=to_string(a[i]);
+             else b+=to_string(a[i]);
+		}
+		cout<<stoll(c)+stoll(b)<<endl;
+	}
+}
