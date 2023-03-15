@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+int x[100],n,a[100];
+string c[10000];
+int dem=0;
+bool check() {
+	vector<int> b;
+	for(int i=1; i<=n; i++) {
+		if(x[i]==1) {
+            b.push_back(a[i]);
+		}
+	}
+	if(b.size()<2)return false;
+	else{
+		for(int i=1; i<b.size(); i++){
+			if(b[i]<b[i-1])return false;
+		}
+		return true;
+	}
+}
+
+void check1(){
+	for(int i=1; i<=n; i++){
+		if(x[i]==1){
+			c[dem].insert( c[dem].length(),to_string(a[i]));
+			c[dem].push_back(' ');
+		}
+	}
+	dem++;
+}
+void Try(int i) {
+	for(int j=0; j<=1; j++) {
+		x[i]=j;
+		if(i==n){
+		    if(check()){
+		    	check1();
+			}
+		}
+		else Try(i+1);
+	}
+}
+
+int main() {
+	cin>>n;
+	for(int i=1;i<=n; i++){
+		cin>>a[i];
+	}
+	Try(1);
+	sort(c,c+dem);
+	for(int i=0; i<dem;i++){
+		cout<<c[i]<<endl;
+	}
+}
