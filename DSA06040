@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+void print_common_elements(long long int arr1[], long long int arr2[], long long int arr3[], int n1, int n2, int n3) {
+    int i = 0, j = 0, k = 0; // khởi tạo 3 con trỏ
+    bool found = false; // biến kiểm tra có phần tử chung hay không
+
+    while (i < n1 && j < n2 && k < n3) { // lặp đến khi một trong 3 dãy kết thúc
+        if (arr1[i] == arr2[j] && arr2[j] == arr3[k]) { // nếu tìm được phần tử chung
+            found = true;
+            cout << arr1[i] << " "; // in ra phần tử đó
+            i++; j++; k++; // tăng con trỏ 3 dãy
+        }
+        else if (arr1[i] < arr2[j]) // nếu phần tử đầu tiên nhỏ hơn
+            i++;
+        else if (arr2[j] < arr3[k]) // nếu phần tử thứ hai nhỏ hơn
+            j++;
+        else
+            k++; // nếu phần tử thứ ba nhỏ hơn
+    }
+    if (!found) cout << -1; // nếu không tìm được phần tử chung nào
+    cout << endl;
+}
+
+int main() {
+    int t;
+    cin >> t; // số lượng test case
+
+    while (t--) {
+        int n1, n2, n3;
+        cin >> n1 >> n2 >> n3; // số lượng phần tử của từng dãy
+
+        long long int arr1[n1], arr2[n2], arr3[n3];
+        for (int i = 0; i < n1; i++)
+            cin >> arr1[i]; // nhập dãy thứ nhất
+
+        for (int i = 0; i < n2; i++)
+            cin >> arr2[i]; // nhập dãy thứ hai
+
+        for (int i = 0; i < n3; i++)
+            cin >> arr3[i]; // nhập dãy thứ ba
+
+        print_common_elements(arr1, arr2, arr3, n1, n2, n3); // in ra các phần tử chung
+    }
+
+    return 0;
+}
