@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+const int MAX_N = 100005;
+
+int a[MAX_N], maxArr[MAX_N];
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int n, k;
+        cin >> n >> k;
+
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
+        }
+
+        int maxIdx = 0;
+        for (int i = 0; i < k; i++) {
+            if (a[i] >= a[maxIdx]) {
+                maxIdx = i;
+            }
+        }
+        maxArr[0] = a[maxIdx];
+
+        for (int i = k; i < n; i++) {
+            if (maxIdx == i - k) {
+                maxIdx = i - k + 1;
+                for (int j = i - k + 2; j <= i; j++) {
+                    if (a[j] >= a[maxIdx]) {
+                        maxIdx = j;
+                    }
+                }
+            }
+            if (a[i] >= a[maxIdx]) {
+                maxIdx = i;
+            }
+            maxArr[i-k+1] = a[maxIdx];
+        }
+
+        for (int i = 0; i < n - k + 1; i++) {
+            cout << maxArr[i] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
