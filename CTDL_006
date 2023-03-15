@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int n;
+	cin>>n;
+	int a[n],c[100001];
+
+
+	set<int> b;
+	for(int i=0; i<n; i++) {
+		cin>>a[i];
+		b.insert(a[i]);
+		c[a[i]]=0;
+	}
+
+
+	for(int i=0; i<n; i++) {
+		for(auto x:b) {
+			if(a[i]==x && c[a[i]]==0) {
+				cout<<a[i]<<' ';
+				c[a[i]]=1;
+				break;
+			}
+		}
+	}
+}
