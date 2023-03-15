@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<string> a;
+int n,k,x[100], dem=0,ok=1;
+void init() {
+	cin>>n;
+	k=1;
+	x[k]=n;
+}
+void result() {
+	if(x[1]==10) {
+		a.push_back("(10) ");
+	} else {
+		string b="";
+		b.push_back('(');
+		for(int i=1; i<=k; i++) {
+			b.push_back(x[i]+'0');
+			b.push_back(' ');
+		}
+		b.pop_back();
+		b.push_back(')');
+		a.push_back(b);
+		}
+}
+void sinh() {
+	int i=k,R,S,D;
+	while(i>0 && x[i]==1)i--;
+	if(i>0) {
+		x[i]=x[i]-1;
+		D=k-i+1;
+		R=D/x[i];
+		S=D%x[i];
+		k=i;
+		if(R>0) {
+			for(int j=i+1; j<=i+R; j++)x[j]=x[i];
+			k+=R;
+		}
+		if(S>0) {
+			k++;
+			x[k]=S;
+		}
+	} else {
+		ok=0;
+	}
+}
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		init();
+		while(ok==1) {
+			result();
+			sinh();
+		}
+		cout<<a.size()<<endl;
+		for(int i=0; i<a.size(); i++){
+			cout<<a[i]<<' ';
+		}
+		cout<<endl;
+		a.clear();
+		ok=1;
+	}
+}
