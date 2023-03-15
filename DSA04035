@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long mod=1e9+7;
+long long Mul(long long a, long long b) {
+	if(b==0)return 0;
+	long long tmp=Mul(a,b/2)%mod;
+	if(b%2==1)return (tmp*2+a)%mod;
+	else return tmp*2%mod;
+}
+long long Pow(long long a, long long b) {
+	if(b==0)return 1;
+	if(b==1)return a%mod;
+	long long tmp=Pow(a,b/2);
+	long long kq=Mul(tmp,tmp);
+	if(b%2==1)return kq*a%mod;
+	return kq%mod;
+}
+int main() {
+	long long a,b;
+	while(cin>>a) {
+		cin>>b;
+		if(a==0 && b==0) {
+			break;
+		} else {
+			cout<<Pow(a,b)<<endl;
+		}
+	}
+}
