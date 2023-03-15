@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n,x[100];
+//  A=1,H=0
+bool check() {
+	if(x[1]!=1) {
+		return false;
+	} else if(x[n]!=0) {
+		return false;
+	} else {
+		for(int i=1; i<=n; i++) {
+			if(x[i]==x[i+1] && x[i]==1) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+void in() {
+	for(int i=1; i<=n; i++) {
+		if(x[i]==1)cout<<'H';
+		else cout<<'A';
+	}
+	cout<<endl;
+}
+void Try(int i) {
+	for(int j=0; j<=1; j++) {
+		x[i]=j;
+		if(i==n) {
+			if(check()) {
+				in();
+			}
+		} else {
+			Try(i+1);
+		}
+	}
+}
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		cin>>n;
+		Try(1);
+	}
+}
