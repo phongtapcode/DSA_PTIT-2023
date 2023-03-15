@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		int n;
+		cin>>n;
+		string s;
+		cin>>s;
+		map<char ,int> a;
+		for(int i=0; i<s.length(); i++) {
+			a[s[i]]++;
+		}
+		while(n--) {
+			int max=0;
+			char b;
+			for(auto x: a) {
+				if(x.second>max) {
+					max=x.second;
+					b=x.first;
+				}
+			}
+			a[b]--;
+		}
+		long long tong =0;
+		for(auto x: a) {
+			tong+=x.second*x.second;
+		}
+		cout<<tong <<endl;
+	}
+}
