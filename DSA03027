@@ -1,0 +1,14 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	int n;
+	cin>>n;
+	int a[n];
+	long long tong1=0,tong2=0;
+	for(int i=0; i<n; i++){
+	cin>>a[i];
+	tong1+=abs(a[i]);
+	tong2+=a[i];	
+	}
+	cout<<tong1+tong2;
+}
