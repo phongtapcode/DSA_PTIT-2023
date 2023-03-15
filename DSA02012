@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long gt(int n){
+	if(n==0)return 1;
+	if(n==1)return 1;
+	else return n*gt(n-1);
+}
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		
+		int n,m;
+		cin>>n>>m;
+		int a[n][m];
+		for(int i=0; i<n; i++){
+			for(int j=0; j<m; j++){
+				cin>>a[i][j];
+			}
+		}
+    // công thức trong toán rời rạc
+		int n1=m+n-2;
+		int k=n-1;
+		cout<<gt(n1)/(gt(n1-k)*gt(k))<<endl;
+	}
+	return 0;
+}
