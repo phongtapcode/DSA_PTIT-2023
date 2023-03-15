@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int x[100],n;
+
+void result(){
+	int y[100];
+	for(int i=1; i<=n; i++){
+		y[i]=x[i];
+	}
+	for(int i=2; i<=n; i++){
+		if(y[i]!=x[i-1]){
+			y[i]=1;
+		}else{
+			y[i]=0;
+		}
+	}
+	for(int i=1; i<=n;i++){
+		cout<<y[i];
+	}
+	cout<<' ';
+}
+
+void Try(int i){
+	for(int j=0; j<=1; j++){
+		x[i]=j;
+		if(i==n){
+		result();
+		}
+		else Try(i+1);
+	}
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		cin>>n;
+		Try(1);
+		cout<<endl;
+	}
+	return 0;
+}
