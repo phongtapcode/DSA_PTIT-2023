@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		int n,k;
+		int a[n+1],b[n+1];
+		cin>>n>>k;
+		for(int j=1; j<=k; j++) {
+			cin>>a[j];
+			b[j]=a[j];
+		}
+		int i=k;
+		while(a[i] == n-k+i)i--;
+		a[i]++;
+		for(int j=i+1; j<=k; j++) {
+			a[j]=a[j-1]+1;
+		}
+		int dem=0;
+        for(int j=1; j<=k; j++){
+        	int ok=0;
+        	for(int l=1; l<=k; l++){
+        		if(b[j]==a[l]){
+        			ok=1;
+        			break;
+				}
+			}
+			if(ok==0){
+				dem++;
+			}
+		}
+		cout<<dem;
+		cout<<endl;
+	}
+}
