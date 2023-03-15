@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long mu(int dem) {
+	long long tich=1;
+	if(dem==0)return 0;
+	else {
+		for(int i=1; i<=dem; i++) {
+			tich*=2;
+		}
+	}
+	return tich;
+}
+int x[100],n,m,ok=0,cnt=0;
+vector<string> a;
+void result() {
+	string temp="";
+	int check=0;
+	for(int i=1; i<=n; i++) {
+		if(check==0) {
+			if(x[i]==1) {
+				for(int j=i; j<=n; j++) {
+					if(x[j]==1) {
+						temp+='1';
+					} else {
+						temp+='0';
+					}
+				}
+				check=1;
+			}
+		} else {
+			break;
+		}
+	}
+	a.push_back(temp);
+}
+
+void Try(int i) {
+	for(int j=0; j<=1; j++) {
+		x[i]=j;
+		if(i==n) {
+			result();
+		} else Try(i+1);
+	}
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		cin>>m;
+		n=15;
+		Try(1);
+		for(int i=1; i<a.size(); i++) {
+			int tong=0;
+			int dem=0;
+			for(int j=a[i].size()-1; j>=0; j--) {
+				if(a[i][j]=='1') {
+					tong+=pow(2,dem);
+				}
+				dem++;
+			}
+			if(tong<=m) {
+				cout<<a[i]<<' ';
+			} else {
+				break;
+			}
+		}
+		cout<<endl;
+	}
+	return 0;
+}
