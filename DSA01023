@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int x[101], n,k,a[101],dem=1;
+
+bool check() {
+	int dem1=0;
+	for(int i=1; i<=k; i++) {
+		if(a[i]==x[i])dem1++;
+	}
+	if(dem1==k) {
+		return true;
+	} else {
+		return false;
+	}
+}
+void result(){
+	for(int i=1; i<=k; i++){
+		cout<<x[i];
+	}
+	cout<<endl;
+}
+void Try(int i) {
+	for(int j=x[i-1]+1; j<=n-k+i ; j++) {
+		x[i]=j;
+		if(i==k) {
+			if(!check()) {
+				dem++;
+			} else {
+                cout<<dem<<endl;
+			}
+		} else Try(i+1);
+	}
+}
+
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--) {
+		cin>>n>>k;
+		for(int i=1; i<=k; i++) {
+			cin>>a[i];
+		}
+		Try(1);
+        dem=1;
+	}
+}
